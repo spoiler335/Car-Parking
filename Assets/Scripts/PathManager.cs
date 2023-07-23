@@ -11,14 +11,7 @@ public class PathManager : MonoBehaviour
     private int currentWayPointIndex = 0;
     private void OnEnable()
     {
-        EventsModel.START_MOVEMENT -= MoveCar;
-        EventsModel.START_MOVEMENT += MoveCar;
 
-        EventsModel.START_REVERSE_MOVEMENT -= MoveReverse;
-        EventsModel.START_REVERSE_MOVEMENT += MoveReverse;
-
-        EventsModel.CAR_CRASHED -= OnCarCrashed;
-        EventsModel.CAR_CRASHED += OnCarCrashed;
     }
 
     private void MoveReverse(GameObject car)
@@ -30,17 +23,20 @@ public class PathManager : MonoBehaviour
         }
         OnPathStart();
         Debug.Log("Reverse Path");
+        car.transform.rotation = Quaternion.Euler(0, 180, 0);
         iTween.MoveTo(car, iTween.Hash(
             "path", reverse,
             "time", 2f,
             "easetype", iTween.EaseType.linear,
-            "movetopath", true
+            "movetopath", true,
+            "orienttopath", true
         ));
     }
 
     private void MoveCar(GameObject car)
     {
         OnPathStart();
+        car.transform.rotation = Quaternion.Euler(0, 0, 0);
         iTween.MoveTo(car, iTween.Hash(
             "path", path1,
             "time", 2f,
@@ -81,19 +77,13 @@ public class PathManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2.5f);
         Debug.Log("Destination Reached");
-        EventsModel.REACHED_DESTINATION?.Invoke();
+
     }
 
-    private void OnCarCrashed(GameObject car)
-    {
-        Debug.Log("Car Crashed");
-        iTween.Stop(car);
-    }
+
 
     private void OnDisable()
     {
-        EventsModel.START_MOVEMENT -= MoveCar;
-        EventsModel.START_REVERSE_MOVEMENT -= MoveReverse;
-        EventsModel.CAR_CRASHED -= OnCarCrashed;
+
     }
 }
