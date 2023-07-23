@@ -67,9 +67,10 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("Level Completed");
         Time.timeScale = 0;
-        gameObject.GetComponent<Image>().color = new Color32(127, 255, 132, 255);
+        gameObject.GetComponent<Image>().color = new Color32(255, 127, 132, 255);
         retryText.text = "Level Cleared";
         retryText.gameObject.SetActive(true);
+        nextLevelButton.gameObject.SetActive(true);
     }
 
     private void OnRetryButtonClicked()

@@ -38,6 +38,7 @@ public class LevelManager : MonoBehaviour
         ++requiredMoves;
     }
 
+
     private void OnCarCrashed()
     {
         Debug.Log("Level Failed");

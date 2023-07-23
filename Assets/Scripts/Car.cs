@@ -43,7 +43,7 @@ public class Car : MonoBehaviour
         iTween.MoveTo(gameObject, iTween.Hash(
             "path", path,
             "time", time,
-            "easetype", iTween.EaseType.easeInOutSine,
+            "easetype", iTween.EaseType.linear,
             "movetopath", true,
             "orienttopath", true
         ));
@@ -62,7 +62,7 @@ public class Car : MonoBehaviour
         iTween.MoveTo(gameObject, iTween.Hash(
             "path", reverse,
             "time", time,
-            "easetype", iTween.EaseType.easeInOutSine,
+            "easetype", iTween.EaseType.linear,
             "movetopath", true,
             "orienttopath", true
         ));
@@ -86,12 +86,18 @@ public class Car : MonoBehaviour
         isTravelling = false;
         isAtStartingPoint = true;
         isAtDestination = false;
+        EventsModel.CAR_MOVED_REVERSE?.Invoke();
     }
 
     private void OnCollisionEnter(Collision other)
     {
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
         Debug.Log($"Collision :: {other.gameObject.tag}");
-        if (other.gameObject.tag == "Car")
+        if (other.gameObject.CompareTag("Car"))
         {
             Debug.Log("End the Game");
             EventsModel.CAR_CRASHED?.Invoke();

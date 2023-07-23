@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -11,12 +12,14 @@ public class GameManager : MonoBehaviour
 
     public bool areMovesAvailable => moves[currentLevel - 1] > 0;
 
+    [SerializeField] private Slider progressSlider;
+
     private void Start()
     {
         DI.di.SetGameManager(this);
         moves = new int[] { 4, 6, 8 };
         currentLevel = PlayerPrefs.GetInt(PPF_KEYS.PPF_LEVEL_KEY, 1);
-        StartCoroutine(LoadLevel());
+        StartCoroutine(LoadLevelInit());
     }
 
     private void OnEnable()
@@ -34,12 +37,11 @@ public class GameManager : MonoBehaviour
     private void LoadNextLevel()
     {
         Debug.Log("Load Next Level");
-        StartCoroutine(LoadLevel());
+        LoadLevel();
     }
 
-    private IEnumerator LoadLevel()
+    private void LoadLevel()
     {
-        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene($"Level-{currentLevel}");
     }
 
@@ -54,7 +56,20 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Retry Level");
         moves = new int[] { 4, 6, 8 };
-        StartCoroutine(LoadLevel());
+        LoadLevel();
+    }
+
+    private IEnumerator LoadLevelInit()
+    {
+        yield return new WaitForSeconds(0.5f);
+        progressSlider.value = 0;
+        progressSlider.maxValue = 1;
+        while (progressSlider.value < 1)
+        {
+            progressSlider.value += 0.001f;
+            yield return null;
+        }
+        LoadLevel();
     }
 
     private void OnDisable()
