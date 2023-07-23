@@ -40,7 +40,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         levelText.text = $"Level : {DI.di.gameManager.currentLevel}";
-        movesCounter.text = $"{DI.di.gameManager.moves[DI.di.gameManager.currentLevel]} ";
+        movesCounter.text = $"{DI.di.gameManager.moves[DI.di.gameManager.currentLevel]} Moves";
         gameObject.GetComponent<Image>().color = new Color32(255, 127, 132, 0);
         retryButton.gameObject.SetActive(false);
         retryText.gameObject.SetActive(false);
@@ -51,7 +51,7 @@ public class UIManager : MonoBehaviour
 
     private void UpdateMoves()
     {
-        movesCounter.text = $"{--DI.di.gameManager.moves[DI.di.gameManager.currentLevel]} ";
+        movesCounter.text = $"{--DI.di.gameManager.moves[DI.di.gameManager.currentLevel]} Moves";
     }
 
     private void GameEndOnNoMoves()

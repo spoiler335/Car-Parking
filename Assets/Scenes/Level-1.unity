@@ -1736,8 +1736,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278255879
-  m_fontColor: {r: 0.028301895, g: 0.0038714863, b: 0.0038714863, a: 1}
+    rgba: 4278322436
+  m_fontColor: {r: 0.015651448, g: 0.01886791, b: 0.0073869643, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2334,6 +2334,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1345126071}
+  - component: {fileID: 1345126072}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -2356,6 +2357,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1345126072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345126070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4783786becbe01642bd5b95db30ed10f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredMoves: 2
 --- !u!1 &1392738822
 GameObject:
   m_ObjectHideFlags: 0
@@ -3362,8 +3376,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278255879
-  m_fontColor: {r: 0.028301895, g: 0.0038714863, b: 0.0038714863, a: 1}
+    rgba: 4278322436
+  m_fontColor: {r: 0.015651448, g: 0.01886791, b: 0.0073869643, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

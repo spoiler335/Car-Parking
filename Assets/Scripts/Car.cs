@@ -90,12 +90,14 @@ public class Car : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+        Debug.Log($"Collision :: {other.gameObject.tag}");
         if (other.gameObject.tag == "Car")
         {
             Debug.Log("End the Game");
             EventsModel.CAR_CRASHED?.Invoke();
         }
     }
+
 
     private void OnDisable()
     {
