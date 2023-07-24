@@ -20,7 +20,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-
+        Debug.Log($"LevelManager Start :: Level -{DI.di.gameManager.currentLevel}");
     }
 
     private void OnCarForward()

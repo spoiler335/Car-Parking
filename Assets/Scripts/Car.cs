@@ -43,6 +43,7 @@ public class Car : MonoBehaviour
 
     private void MoveForward()
     {
+        Debug.Log($"{gameObject.name} Moving Forward");
         isTravelling = true;
         iTween.MoveTo(gameObject, iTween.Hash(
             "path", path,
@@ -57,6 +58,7 @@ public class Car : MonoBehaviour
 
     private void MoveReverse()
     {
+        Debug.Log($"{gameObject.name} Moving Reverse");
         isTravelling = true;
         Transform[] reverse = new Transform[path.Length];
         for (int i = 0; i < path.Length; ++i)

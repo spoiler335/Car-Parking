@@ -42,7 +42,8 @@ public class GameManager : MonoBehaviour
 
     private void LoadLevel()
     {
-        SceneManager.LoadScene($"Level-{currentLevel}");
+        Time.timeScale = 1;
+        SceneManager.LoadSceneAsync($"Level-{currentLevel}");
     }
 
     private void OnLevelCompleted()
@@ -56,6 +57,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Retry Level");
         moves = new int[] { 4, 6, 8 };
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
         LoadLevel();
     }
 
