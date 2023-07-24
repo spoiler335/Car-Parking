@@ -205,6 +205,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc86a3bc22aee5c4db61d4c2b4897cd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crashSound: {fileID: 8300000, guid: bf5a19850200c384096f56bbb893b223, type: 3}
+  driveSound: {fileID: 8300000, guid: 3c1abac7ff0d77a4c83c57860ae271f3, type: 3}
+  breakSound: {fileID: 8300000, guid: 60e510422687b3240a5c5f93d9af6abd, type: 3}
 --- !u!82 &370801319
 AudioSource:
   m_ObjectHideFlags: 0
