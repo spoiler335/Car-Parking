@@ -8,8 +8,10 @@ public class Car : MonoBehaviour
     private bool isAtStartingPoint;
     private bool isTravelling;
 
-    [SerializeField] Transform[] path;
+    [SerializeField] private Transform[] path;
     [SerializeField] private float time = 2f;
+    [SerializeField] private float speed = 10f;
+    [SerializeField] private Transform initialPosition;
 
     private void OnEnable()
     {
@@ -21,6 +23,8 @@ public class Car : MonoBehaviour
         isAtDestination = false;
         isAtStartingPoint = true;
         isTravelling = false;
+
+        transform.position = initialPosition.position;
     }
 
     private void OnMouseDown()
@@ -45,7 +49,8 @@ public class Car : MonoBehaviour
             "time", time,
             "easetype", iTween.EaseType.linear,
             "movetopath", true,
-            "orienttopath", true
+            "orienttopath", true,
+            "scaletopath", true
         ));
         StartCoroutine(OnForwardPathCompleted());
     }
@@ -64,7 +69,8 @@ public class Car : MonoBehaviour
             "time", time,
             "easetype", iTween.EaseType.linear,
             "movetopath", true,
-            "orienttopath", true
+            "orienttopath", true,
+            "scaletopath", true
         ));
         StartCoroutine(OnReversePathCompleted());
     }
