@@ -21,19 +21,18 @@ public class AudioManager : MonoBehaviour
     public void PlayCrashSound()
     {
         Debug.Log("Playing Crash Sound ");
-        audioSource.PlayOneShot(crashSound);
+
     }
 
     public void PlayDriveSound()
     {
         Debug.Log("Playing Drive Sound");
-        audioSource.PlayOneShot(driveSound);
+
     }
 
     public void PlayBreakSound()
     {
         Debug.Log("Playing Break Sound");
-        audioSource.PlayOneShot(breakSound);
     }
 
 }
