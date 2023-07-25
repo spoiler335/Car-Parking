@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Slider progressSlider;
 
+    [SerializeField] private GameObject gameProgressIndicator;
+
     private void Start()
     {
         DI.di.SetGameManager(this);
@@ -48,14 +50,14 @@ public class GameManager : MonoBehaviour
 
     private void OnLevelCompleted()
     {
-        Debug.Log("Level Completed");
+        Debug.Log("GameManager :: Level Completed");
         ++currentLevel;
         PlayerPrefs.SetInt(PPF_KEYS.PPF_LEVEL_KEY, currentLevel);
     }
 
     private void RetryLevel()
     {
-        Debug.Log("Retry Level");
+        Debug.Log("GameManager :: Retry Level");
         moves = new int[] { 4, 6, 8 };
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
         LoadLevel();
@@ -63,6 +65,11 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator LoadLevelInit()
     {
+        if (currentLevel >= 4)
+        {
+            gameProgressIndicator.SetActive(true);
+            yield break;
+        }
         yield return new WaitForSeconds(0.5f);
         progressSlider.value = 0;
         progressSlider.maxValue = 1;

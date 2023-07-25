@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button exitButton;
     [SerializeField] private Button nextLevelButton;
 
+    [SerializeField] private GameObject ftueScreen;
+
     private void OnEnable()
     {
         EventsModel.CAR_MOVED_FORWARD -= UpdateMoves;
@@ -39,6 +41,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(ShowFTUE());
         levelText.text = $"Level : {DI.di.gameManager.currentLevel}";
         movesCounter.text = $"{DI.di.gameManager.moves[DI.di.gameManager.currentLevel - 1]} Moves";
         gameObject.GetComponent<Image>().color = new Color32(255, 127, 132, 0);
@@ -47,6 +50,13 @@ public class UIManager : MonoBehaviour
         exitButton.gameObject.SetActive(false);
         nextLevelButton.gameObject.SetActive(false);
 
+    }
+
+    private IEnumerator ShowFTUE()
+    {
+        ftueScreen.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        ftueScreen.SetActive(false);
     }
 
     private void UpdateMoves()
@@ -66,13 +76,13 @@ public class UIManager : MonoBehaviour
 
     private void OnLevelComplete()
     {
-        Debug.Log("Level Completed");
+        Debug.Log("UIManager ::Level Completed");
         Time.timeScale = 0;
         gameObject.GetComponent<Image>().color = new Color32(255, 127, 132, 255);
-        if (DI.di.gameManager.currentLevel < 3) retryText.text = "Level Cleared";
+        if (DI.di.gameManager.currentLevel <= 3) retryText.text = "Level Cleared";
         else retryText.text = "Game Cleared, other levels are in Development";
         retryText.gameObject.SetActive(true);
-        if (DI.di.gameManager.currentLevel < 3) nextLevelButton.gameObject.SetActive(true);
+        if (DI.di.gameManager.currentLevel <= 3) nextLevelButton.gameObject.SetActive(true);
         else exitButton.gameObject.SetActive(true);
     }
 

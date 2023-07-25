@@ -45,7 +45,6 @@ public class Car : MonoBehaviour
     {
         Debug.Log($"{gameObject.name} Moving Forward");
         isTravelling = true;
-        DI.di.audioManager.PlayDriveSound();
         iTween.MoveTo(gameObject, iTween.Hash(
             "path", path,
             "time", time,
@@ -67,7 +66,6 @@ public class Car : MonoBehaviour
             reverse[i] = path[path.Length - 1 - i];
         }
         Debug.Log("Reverse Path");
-        DI.di.audioManager.PlayDriveSound();
         iTween.MoveTo(gameObject, iTween.Hash(
             "path", reverse,
             "time", time,
@@ -86,7 +84,6 @@ public class Car : MonoBehaviour
         isTravelling = false;
         isAtDestination = true;
         isAtStartingPoint = false;
-        DI.di.audioManager.PlayBreakSound();
         EventsModel.CAR_MOVED_FORWARD?.Invoke();
     }
 
@@ -97,7 +94,6 @@ public class Car : MonoBehaviour
         isTravelling = false;
         isAtStartingPoint = true;
         isAtDestination = false;
-        DI.di.audioManager.PlayBreakSound();
         EventsModel.CAR_MOVED_REVERSE?.Invoke();
     }
 
@@ -112,7 +108,6 @@ public class Car : MonoBehaviour
         if (other.gameObject.CompareTag("Car"))
         {
             Debug.Log("End the Game");
-            DI.di.audioManager.PlayCrashSound();
             EventsModel.CAR_CRASHED?.Invoke();
         }
     }
